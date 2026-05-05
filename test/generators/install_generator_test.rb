@@ -14,6 +14,12 @@ class InstallGeneratorTest < Rails::Generators::TestCase
 
   setup do
     prepare_destination
+    # Stub run_upgrade to prevent shelling out to bin/rails (doesn't exist in test dest)
+    RailsPulse::Generators::InstallGenerator.any_instance.stubs(:run_upgrade)
+  end
+
+  teardown do
+    RailsPulse::Generators::InstallGenerator.any_instance.unstub(:run_upgrade)
   end
 
   # Single Database Tests

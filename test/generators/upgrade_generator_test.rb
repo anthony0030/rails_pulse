@@ -41,7 +41,7 @@ class UpgradeGeneratorTest < Rails::Generators::TestCase
 test "detects separate database setup from database.yml" do
     File.write(File.join(destination_root, "config/database.yml"), separate_database_yml)
 
-    output = run_generator([], { database: "separate" })
+    output = run_generator(["--database=separate"])
 
     assert_match(/Detected database setup: separate/, output)
   end
@@ -60,7 +60,7 @@ test "detects separate database setup from database.yml" do
     File.write(File.join(destination_root, "config/database.yml"), separate_database_yml_with_aliases)
 
     output = mock_tables_exist do
-      run_generator([], {})
+      run_generator(["--database=separate"])
     end
 
     assert_match(/Detected database setup: separate/, output)
@@ -95,7 +95,7 @@ test "detects separate database setup from database.yml" do
     end
 
     assert_match(/Found 1 new migration/, output)
-    assert_file "db/migrate/20251019000000_add_new_feature.rb"
+    assert_migration "db/migrate/add_new_feature.rb"
   end
 
   test "single database upgrade copies multiple new migrations" do
@@ -108,8 +108,8 @@ test "detects separate database setup from database.yml" do
     end
 
     assert_match(/Found 2 new migration/, output)
-    assert_file "db/migrate/20251019000000_add_feature_one.rb"
-    assert_file "db/migrate/20251019000001_add_feature_two.rb"
+    assert_migration "db/migrate/add_feature_one.rb"
+    assert_migration "db/migrate/add_feature_two.rb"
   end
 
   test "single database upgrade doesn't copy existing migrations" do
@@ -141,11 +141,11 @@ test "separate database upgrade copies migrations to rails_pulse_migrate" do
     create_gem_migration("add_new_feature", "20251019000000")
 
     output = mock_tables_exist do
-      run_generator([], { database: "separate" })
+      run_generator(["--database=separate"])
     end
 
     assert_match(/Found 1 new migration/, output)
-    assert_file "db/rails_pulse_migrate/20251019000000_add_new_feature.rb"
+    assert_migration "db/rails_pulse_migrate/add_new_feature.rb"
     assert_match(/rails db:migrate:rails_pulse/, output)
   end
 
@@ -168,7 +168,7 @@ test "separate database upgrade copies migrations to rails_pulse_migrate" do
     File.write(File.join(destination_root, "config/database.yml"), separate_database_yml)
 
     output = mock_tables_with_missing_columns do
-      run_generator([], { database: "separate" })
+      run_generator(["--database=separate"])
     end
 
     assert_migration "db/rails_pulse_migrate/upgrade_rails_pulse_tables.rb" do |content|
