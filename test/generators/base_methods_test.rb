@@ -23,6 +23,7 @@ class BaseMethodsTest < ActiveSupport::TestCase
 
   test "RAILS_PULSE_TABLES contains all expected table names" do
     expected = %w[
+      rails_pulse_hosts
       rails_pulse_routes
       rails_pulse_queries
       rails_pulse_requests
@@ -41,8 +42,8 @@ class BaseMethodsTest < ActiveSupport::TestCase
     assert_predicate RailsPulse::Generators::BaseMethods::RAILS_PULSE_TABLES, :frozen?
   end
 
-  test "RAILS_PULSE_TABLES has 7 entries" do
-    assert_equal 7, RailsPulse::Generators::BaseMethods::RAILS_PULSE_TABLES.size
+  test "RAILS_PULSE_TABLES has 8 entries" do
+    assert_equal 8, RailsPulse::Generators::BaseMethods::RAILS_PULSE_TABLES.size
   end
 
   # next_migration_number Tests

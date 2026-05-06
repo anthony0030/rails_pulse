@@ -118,7 +118,8 @@ module GeneratorTestHelpers
   # Complete schema columns for all Rails Pulse tables
   def complete_schema_columns
     {
-      rails_pulse_routes: %w[id method path tags created_at updated_at],
+      rails_pulse_routes: %w[id method path host_id tags created_at updated_at],
+      rails_pulse_hosts: %w[id name created_at updated_at],
       rails_pulse_queries: %w[id hashed_sql normalized_sql analyzed_at explain_plan issues metadata
                               query_stats backtrace_analysis index_recommendations n_plus_one_analysis
                               suggestions tags created_at updated_at],
@@ -140,7 +141,8 @@ module GeneratorTestHelpers
   # Schema columns missing the 'tags' column (for testing missing column detection)
   def schema_without_tags
     {
-      rails_pulse_routes: %w[id method path created_at updated_at],
+      rails_pulse_routes: %w[id method path host_id created_at updated_at],
+      rails_pulse_hosts: %w[id name created_at updated_at],
       rails_pulse_queries: %w[id hashed_sql normalized_sql analyzed_at explain_plan issues metadata
                               query_stats backtrace_analysis index_recommendations n_plus_one_analysis
                               suggestions created_at updated_at],

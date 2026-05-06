@@ -5,6 +5,7 @@ module RailsPulse
     module BaseMethods
       # Authoritative list of Rails Pulse tables (from schema file)
       RAILS_PULSE_TABLES = %w[
+        rails_pulse_hosts
         rails_pulse_routes
         rails_pulse_queries
         rails_pulse_requests

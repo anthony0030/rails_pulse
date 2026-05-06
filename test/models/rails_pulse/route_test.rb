@@ -43,13 +43,13 @@ class RailsPulse::RouteTest < ActiveSupport::TestCase
   end
 
   test "should include ransackable attributes" do
-    expected_attributes = %w[path average_response_time_ms max_response_time_ms request_count requests_per_minute occurred_at requests_occurred_at error_count error_rate_percentage status_indicator]
+    expected_attributes = %w[path host_id average_response_time_ms max_response_time_ms request_count requests_per_minute occurred_at requests_occurred_at error_count error_rate_percentage status_indicator]
 
     assert_equal expected_attributes.sort, RailsPulse::Route.ransackable_attributes.sort
   end
 
   test "should include ransackable associations" do
-    expected_associations = %w[requests]
+    expected_associations = %w[requests host]
 
     assert_equal expected_associations.sort, RailsPulse::Route.ransackable_associations.sort
   end
