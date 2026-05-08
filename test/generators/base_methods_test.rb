@@ -31,6 +31,7 @@ class BaseMethodsTest < ActiveSupport::TestCase
       rails_pulse_jobs
       rails_pulse_job_runs
       rails_pulse_summaries
+      rails_pulse_deployments
     ]
 
     expected.each do |table|
@@ -42,8 +43,8 @@ class BaseMethodsTest < ActiveSupport::TestCase
     assert_predicate RailsPulse::Generators::BaseMethods::RAILS_PULSE_TABLES, :frozen?
   end
 
-  test "RAILS_PULSE_TABLES has 8 entries" do
-    assert_equal 8, RailsPulse::Generators::BaseMethods::RAILS_PULSE_TABLES.size
+  test "RAILS_PULSE_TABLES has 9 entries" do
+    assert_equal 9, RailsPulse::Generators::BaseMethods::RAILS_PULSE_TABLES.size
   end
 
   # next_migration_number Tests

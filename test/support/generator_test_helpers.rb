@@ -134,7 +134,8 @@ module GeneratorTestHelpers
       rails_pulse_summaries: %w[id period_start period_end period_type summarizable_type summarizable_id
                                 count avg_duration min_duration max_duration p50_duration p95_duration
                                 p99_duration total_duration stddev_duration error_count success_count
-                                status_2xx status_3xx status_4xx status_5xx created_at updated_at]
+                                status_2xx status_3xx status_4xx status_5xx created_at updated_at],
+      rails_pulse_deployments: %w[id revision started_at finished_at metadata created_at updated_at]
     }
   end
 
@@ -157,7 +158,8 @@ module GeneratorTestHelpers
       rails_pulse_summaries: %w[id period_start period_end period_type summarizable_type summarizable_id
                                 count avg_duration min_duration max_duration p50_duration p95_duration
                                 p99_duration total_duration stddev_duration error_count success_count
-                                status_2xx status_3xx status_4xx status_5xx created_at updated_at]
+                                status_2xx status_3xx status_4xx status_5xx created_at updated_at],
+      rails_pulse_deployments: %w[id revision started_at finished_at metadata created_at updated_at]
     }
   end
 end
