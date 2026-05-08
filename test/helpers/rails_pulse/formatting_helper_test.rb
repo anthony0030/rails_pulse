@@ -193,10 +193,13 @@ class RailsPulse::FormattingHelperTest < ActionView::TestCase
   end
 
   test "time_ago_in_words handles large number of days" do
-    time = Time.now - 100.days
-    result = time_ago_in_words(time)
+    travel_to Time.zone.parse("2026-05-08 12:00:00") do
+      time = Time.current - 100.days
 
-    assert_equal "100d ago", result
+      result = time_ago_in_words(time)
+
+      assert_equal "100d ago", result
+    end
   end
 
   test "time_ago_in_words converts UTC time to local" do
